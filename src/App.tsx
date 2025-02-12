@@ -1,7 +1,13 @@
+import { useState } from "react";
+import LoginPage from "./pages/auth/loginPage";
 import ProductsPage from "./pages/products/ProductsPage";
 
 function App() {
-  return <ProductsPage />;
+  const[isLogged, setIsLogged] = useState(false);
+  const handerLogin = () => {
+    setIsLogged(true);
+  };
+  return isLogged ? < ProductsPage /> : < LoginPage onLogin={handerLogin}/>;
 }
 
 export default App;

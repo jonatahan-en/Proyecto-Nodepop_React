@@ -2,12 +2,25 @@ import { useState } from "react";
 import LoginPage from "./pages/auth/LoginPage";
 import ProductsPage from "./pages/products/ProductsPage";
 
-function App() {
-  const[isLogged, setIsLogged] = useState(false);
+
+interface Props {
+  defaultIsLogged : boolean;
+}
+
+function App({defaultIsLogged}: Props) {
+  const[isLogged, setIsLogged] = useState(defaultIsLogged);
   const handerLogin = () => {
     setIsLogged(true);
   };
-  return isLogged ? < ProductsPage /> : < LoginPage onLogin={handerLogin}/>;
+
+  const handerLogout = () => {
+    setIsLogged(false);
+  }
+  return isLogged ? (
+  < ProductsPage onLogout={handerLogout} />
+  ):( 
+  < LoginPage onLogin={handerLogin}/>
+);
 }
 
 export default App;

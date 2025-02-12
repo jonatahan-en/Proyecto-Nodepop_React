@@ -1,5 +1,4 @@
 import {  useEffect, useState } from "react";
-import Button from "../../components/Button";
 import { getLatesProducts } from "./service";
 import { Product } from "./types";
 
@@ -12,6 +11,7 @@ function ProductsPage() {
             setProducts(response);
         });
     }, []);
+
 
     return (
         <div>
@@ -44,14 +44,6 @@ function ProductsPage() {
                     </li>
                 ))}
             </ul>
-            <Button onClick={() =>{
-                console.log("Button clicked!");
-            }}
-            $variant="secondary"
-            >
-                Click me!
-                </Button>
-            <Button $variant="primary">Primary</Button>
         </div>
     )
 }

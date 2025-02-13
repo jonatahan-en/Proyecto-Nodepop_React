@@ -1,25 +1,16 @@
-import { useState } from "react";
 import LoginPage from "./pages/auth/LoginPage";
 import ProductsPage from "./pages/products/ProductsPage";
+import { useAuth } from "./pages/auth/context";
 
 
-interface Props {
-  defaultIsLogged : boolean;
-}
 
-function App({defaultIsLogged}: Props) {
-  const[isLogged, setIsLogged] = useState(defaultIsLogged);
-  const handerLogin = () => {
-    setIsLogged(true);
-  };
-
-  const handerLogout = () => {
-    setIsLogged(false);
-  }
+function App() {
+  const {isLogged}= useAuth();
+  
   return isLogged ? (
-  < ProductsPage onLogout={handerLogout} />
+  < ProductsPage />
   ):( 
-  < LoginPage onLogin={handerLogin}/>
+  < LoginPage/>
 );
 }
 

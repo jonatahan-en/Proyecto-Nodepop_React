@@ -2,14 +2,13 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import { login } from "./service";
 import { ClipLoader } from "react-spinners";
+import { useAuth } from "./context";
 
-interface Props {
-    onLogin: () => void;
-}
 
-function LoginPage({onLogin}: Props) {
+function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {onLogin} = useAuth();
     const [IsLoading, setIsLoading] = useState(false);
 
     const handerSubmit = async (event:React.

@@ -1,6 +1,8 @@
 import {  useEffect, useState } from "react";
 import { getLatesProducts } from "./service";
 import { Product } from "./types";
+import Layout from "../../components/layout/Layout";
+
 
 
 // Este componente muestra una lista de productos
@@ -13,7 +15,9 @@ function ProductsPage() {
     }, []);
 
 
-    return (
+    return (  
+
+    <Layout title="Adverts">
         <div>
             <h1>Products page</h1> 
             <ul>
@@ -45,6 +49,7 @@ function ProductsPage() {
                 ))}
             </ul>
         </div>
+    </Layout>
     )
 }
 

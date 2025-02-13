@@ -5,14 +5,12 @@ import Footer from "./footer";
 interface LayoutProps {
     title: string;
     children: ReactNode;
-    onLogout: () => void;
-    isLogged: boolean;
 }
 
-export default function Layout({title, children, ...rest}: LayoutProps) {
+export default function Layout({title, children}: LayoutProps) {
     return(
         <div>
-            <Header {...rest}/>
+            <Header/>
             <main>
                 <h2>{title}</h2>
                 {children}

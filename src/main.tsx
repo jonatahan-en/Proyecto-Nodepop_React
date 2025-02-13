@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import storage from "./utils/storage.ts";
 import { setAuthorizationHeader } from "./api/client.ts";
-import { AuthProvider } from "./pages/auth/context.tsx";
+import { AuthProvider } from "./pages/auth/AuthProvider.tsx";
 
 const acccessToken = storage.get("auth");
 if (acccessToken) {

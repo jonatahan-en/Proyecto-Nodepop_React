@@ -1,18 +1,17 @@
 import { useState } from "react";
-import Button from "../../components/Button";
+import Button from "../../components/shared/Button";
 import { login } from "./service";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "./context";
-
+import "./LoginPage.css"; // Importa el archivo CSS
 
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {onLogin} = useAuth();
-    const [IsLoading, setIsLoading] = useState(false);
+    const { onLogin } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handerSubmit = async (event:React.
-        FormEvent<HTMLFormElement>) =>{
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
             setIsLoading(true);
@@ -20,51 +19,57 @@ function LoginPage() {
                 email,
                 password,
             });
-            console.log(response); 
-            onLogin();  
+            console.log(response);
+            onLogin();
         } catch (error) {
             console.error(error);
-        }finally{
+        } finally {
             setIsLoading(false);
         }
-    }
-    const handerEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    };
+
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
-    }
-    const handerPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    };
+
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
-    }
+    };
 
     const isDisabled = !email || !password;
-    return(
-        <div>
+
+    return (
+        <div className="login-container">
             <h1>Login Nodepop</h1>
-            <form onSubmit={handerSubmit}   
-            >
-                <label className="block">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <label>
                     Email:
-                    <input 
-                    type="text" 
-                    name="email" 
-                    value={email}
-                    onChange={handerEmailChange}/>
+                    <input
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
                 </label>
-                <label className="block">
+                <label>
                     Password:
-                    <input 
-                    type="password" 
-                    name="password"
-                    value={password} 
-                    onChange={handerPasswordChange}/>
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
                 </label>
-                <Button type="submit" 
-                $variant="primary" 
-                disabled={isDisabled}
+                <Button
+                    type="submit"
+                    $variant="primary"
+                    disabled={isDisabled}
                 >
-                    {IsLoading ? <ClipLoader color="white" size={20} /> : "Login"}
-                    </Button>
+                    {isLoading ? <ClipLoader color="white" size={20} /> : "Login"}
+                </Button>
             </form>
         </div>
-    )
+    );
 }
+
 export default LoginPage;

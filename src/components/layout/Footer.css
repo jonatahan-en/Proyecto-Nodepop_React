@@ -1,0 +1,16 @@
+/* Estilos generales para el pie de página */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Estilos para el texto del pie de página */
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}

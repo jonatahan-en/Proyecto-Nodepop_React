@@ -1,5 +1,4 @@
 import { client } from "../../api/client";
-
 import type { Product } from "./types";
 
 

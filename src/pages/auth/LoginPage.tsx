@@ -17,7 +17,7 @@ function LoginPage() {
             setIsLoading(true);
             const response = await login({
                 email,
-                password,
+                password, 
             });
             console.log(response);
             onLogin();
@@ -40,7 +40,7 @@ function LoginPage() {
 
     return (
         <div className="login-container">
-            <h1>Login Nodepop</h1>
+            <h1>Log in to Nodepop</h1>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label>
                     Email:

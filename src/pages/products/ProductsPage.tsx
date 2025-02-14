@@ -3,6 +3,14 @@ import { getLatesProducts } from "./service";
 import { Product } from "./types";
 import Layout from "../../components/layout/Layout";
 import './ProductsPage.css'; // Importa el archivo CSS
+import Button from "../../components/shared/Button";
+
+const EmptyList = () => (
+    <div className="products-empty">
+        <p>No products found</p>
+        <Button $variant="primary">Create new product</Button>
+    </div>
+);
 
 // Este componente muestra una lista de productos
 function ProductsPage() {
@@ -17,6 +25,7 @@ function ProductsPage() {
         <Layout title="Products">
             <div className="products-container">
                 <h1>Products page</h1>
+                {products.length ? (
                 <ul className="products-list">
                     {products.map((product) => (
                         <li key={product.id} className="product-item">
@@ -44,6 +53,9 @@ function ProductsPage() {
                         </li>
                     ))}
                 </ul>
+            ) : (   
+                <EmptyList />
+            )}
             </div>
         </Layout>
     );

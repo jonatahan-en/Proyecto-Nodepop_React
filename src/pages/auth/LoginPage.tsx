@@ -4,12 +4,16 @@ import { login } from "./service";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "./context";
 import "./LoginPage.css"; // Importa el archivo CSS
+import { useLocation, useNavigate } from "react-router-dom";
 
 function LoginPage() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { onLogin } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+    console.log(location);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -21,6 +25,9 @@ function LoginPage() {
             });
             console.log(response);
             onLogin();
+
+            const to = location.state ?.from ?? "/";
+            navigate(to, { replace: true });
         } catch (error) {
             console.error(error);
         } finally {

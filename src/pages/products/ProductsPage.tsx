@@ -4,6 +4,7 @@ import { Product } from "./types";
 import Layout from "../../components/layout/Layout";
 import './ProductsPage.css'; // Importa el archivo CSS
 import Button from "../../components/shared/Button";
+import { Link } from "react-router-dom";
 
 const EmptyList = () => (
     <div className="products-empty">
@@ -28,6 +29,7 @@ function ProductsPage() {
                 {products.length ? (
                 <ul className="products-list">
                     {products.map((product) => (
+                    <Link to={`/products/${product.id}`}>
                         <li key={product.id} className="product-item">
                             <strong>{product.name}</strong>
                             <h3>Price:</h3>
@@ -51,6 +53,7 @@ function ProductsPage() {
                                 ))}
                             </ul>
                         </li>
+                    </Link>
                     ))}
                 </ul>
             ) : (   

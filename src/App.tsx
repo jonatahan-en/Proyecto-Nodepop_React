@@ -6,6 +6,7 @@ import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import ProductsPage from "./pages/products/ProductsPage";
 import NewProductPage from "./pages/products/NewProductPage";
 import ProductDetail from "./pages/products/ProductDetail";
+import RequireAuth from "./pages/auth/requireAuth";
 
 
 
@@ -14,10 +15,15 @@ return (
   <Routes>
     <Route path="/login" element={<LoginPage/>} />
 
-    <Route path="/products" element={<Outlet />} >
+    <Route path="/products" element={ <Outlet/>} >
       <Route index element={<ProductsPage />} />
       <Route path=":productId" element={<ProductDetail />} />/
-      <Route path="new" element={<NewProductPage/>} />
+      <Route path="new" element={
+      <RequireAuth>
+        <NewProductPage/>
+        </RequireAuth>
+      } 
+      />
     </Route>
 
     <Route path="/" element={<Navigate to="/products"/>} />

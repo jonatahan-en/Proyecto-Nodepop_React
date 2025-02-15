@@ -10,7 +10,7 @@ function RequireAuth({ children }: {children: ReactNode}){
     return isLogged ? (
         children 
     ) : (
-        <Navigate to="/login"  state={{from: location.pathname}}
+        <Navigate to="/auth/login"  state={{from: location.pathname}}
         replace/>// replace es para que no te redirija a la pagina anterior y te redirija a la pagina de login                   
     );
 

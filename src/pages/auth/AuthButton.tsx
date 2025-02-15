@@ -15,6 +15,6 @@ export default function AuthButton() {
         Logout
         </Button>
     ) : (
-        <Button $variant="primary" as={Link} to="/login" >Login</Button>
+        <Button $variant="primary" as={Link} to="/auth/login" >Login</Button>
     );
 }

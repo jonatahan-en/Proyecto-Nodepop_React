@@ -3,7 +3,7 @@ import Layout from "../../components/layout/Layout";
 import { useEffect, useState } from "react";
 import { Product } from "./types";
 import { getProduct } from "./service";
-import "./ProductDetail.css"; // Importa el archivo CSS
+import "./ProductDetail.css"; 
 
 function ProductDetail() {
     const params = useParams();
@@ -27,12 +27,12 @@ function ProductDetail() {
     return (
         <Layout title="Product detail">
             {product ? (
-                <div className="product-detail-container"> {/* Aplicar la clase CSS */}
+                <div className="product-detail-container"> 
                     <h2>{product.name}</h2>
                     <p>Price: {product.price}</p>
                     <p>Sale: {product.sale ? "Yes" : "No"}</p>
                     <p>Tags: {product.tags.join(", ")}</p>
-                    <img src={product.photo} alt={product.name} /> {/* Mostrar la imagen del producto */}
+                    <img src={product.photo} alt={product.name} /> 
                 </div>
             ) : (
                 <p>Loading...</p>

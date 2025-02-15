@@ -5,8 +5,8 @@ import { ClipLoader } from "react-spinners";
 import { useAuth } from "./context";
 import "./LoginPage.css"; // Importa el archivo CSS
 import { useLocation, useNavigate } from "react-router-dom";
-//import { isApiClientError } from "../../api/client";
 import { AxiosError } from "axios";
+//import { isApiClientError } from "../../api/client";
 
 
 function LoginPage() {

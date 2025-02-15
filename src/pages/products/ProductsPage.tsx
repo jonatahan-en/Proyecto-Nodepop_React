@@ -27,7 +27,7 @@ function ProductsPage() {
             <div className="products-container">
                 <h1>Products page</h1>
                 {products.length ? (
-                <ul className="products-list">
+                <ul className="products-list"> 
                     {products.map((product) => (
                     <Link to={`/products/${product.id}`}>
                         <li key={product.id} className="product-item">

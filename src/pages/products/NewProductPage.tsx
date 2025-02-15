@@ -1,6 +1,6 @@
 import Layout from "../../components/layout/Layout";
 import Button from "../../components/shared/Button";
-import "./NewProductPage.css"; // Importa el archivo CSS
+import "./NewProductPage.css"; 
 
 function NewProductPage() {
     return( 

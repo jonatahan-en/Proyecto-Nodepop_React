@@ -13,7 +13,7 @@ import RequireAuth from "./pages/auth/requireAuth";
     function App() {
 return ( 
   <Routes>
-    <Route path="/login" element={<LoginPage/>} />
+    <Route path="/auth/login" element={<LoginPage/>} />
 
     <Route path="/products" element={ <Outlet/>} >
       <Route index element={<ProductsPage />} />

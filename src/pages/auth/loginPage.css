@@ -64,3 +64,12 @@
 .login-form button:hover:not(:disabled) {
     background-color: #0056b3;
 }
+
+.error-message {
+    color: red;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-top: 20px;
+    padding: 10px 15px;
+}

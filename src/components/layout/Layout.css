@@ -1,0 +1,14 @@
+/* Estilos generales para el contenedor del layout */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos para el contenido principal */
+.layout-main {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+

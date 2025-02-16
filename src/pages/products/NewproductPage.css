@@ -37,7 +37,8 @@
 .new-product-form input[type="text"],
 .new-product-form input[type="number"],
 .new-product-form input[type="file"],
-.new-product-form input[type="checkbox"] {
+.new-product-form input[type="checkbox"],
+.new-product-form select {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
@@ -61,4 +62,10 @@
 
 .new-product-form button:hover {
     background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }

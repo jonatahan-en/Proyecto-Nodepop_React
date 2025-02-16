@@ -11,10 +11,14 @@ export const getLatesProducts = async () => {
 
 
 
-// export const createProduct = async (product: productContent) => {
-//     const response = await client.post<Product>(productsUrl, product);
-//     return response.data;
-// }
+export const createProduct = async (product: FormData) => {
+    const response = await client.post<Product>(productsUrl, product,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+    return response.data;
+}
 
 export const getProduct = async (productId: string) => {
     const url = `${productsUrl}/${productId}`;

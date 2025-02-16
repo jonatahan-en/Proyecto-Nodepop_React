@@ -1,10 +1,10 @@
-import Layout from "../../components/layout/Layout";
+import Page from "../../components/layout/Page";
 import Button from "../../components/shared/Button";
 import "./NewProductPage.css"; 
 
 function NewProductPage() {
     return( 
-        <Layout title="New Product">
+        <Page title="New Product">
             <div className="new-product-container">
                 <h1>New Product</h1>
                 <form className="new-product-form">
@@ -51,7 +51,7 @@ function NewProductPage() {
                     </Button>
                 </form>
             </div>
-        </Layout>
+        </Page>
     );
 }
 

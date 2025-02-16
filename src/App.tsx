@@ -7,6 +7,7 @@ import ProductsPage from "./pages/products/ProductsPage";
 import NewProductPage from "./pages/products/NewProductPage";
 import ProductDetail from "./pages/products/ProductDetail";
 import RequireAuth from "./pages/auth/requireAuth";
+import Layout from "./components/layout/Layout";
 
 
 
@@ -15,7 +16,10 @@ return (
   <Routes>
     <Route path="/auth/login" element={<LoginPage/>} />
 
-    <Route path="/products" element={ <Outlet/>} >
+    <Route path="/products" element={ 
+      <Layout>
+          <Outlet/>
+      </Layout>} >
       <Route index element={<ProductsPage />} />
       <Route path=":productId" element={<ProductDetail />} />/
       <Route path="new" element={

@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Layout from "../../components/layout/Layout";
 import { useEffect, useState } from "react";
 import { Product } from "./types";
 import { getProduct } from "./service";
 import { isApiClientError } from "../../api/client";
 import "./ProductDetail.css"; 
+import Page from "../../components/layout/Page";
 
 function ProductDetail() {
     const params = useParams();
@@ -26,7 +26,7 @@ function ProductDetail() {
     }, [params.productId, navigate]);
 
     return (
-        <Layout title="Product detail">
+        <Page title="Product detail">
             {product ? (
                 <div className="product-detail-container"> 
                     <h2>{product.name}</h2>
@@ -38,7 +38,7 @@ function ProductDetail() {
             ) : (
                 <p>Loading...</p>
             )}
-        </Layout>
+        </Page>
     );
 }
 

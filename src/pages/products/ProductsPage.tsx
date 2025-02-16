@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getLatesProducts } from "./service";
 import { Product } from "./types";
-import Layout from "../../components/layout/Layout";
 import './ProductsPage.css'; // Importa el archivo CSS
 import Button from "../../components/shared/Button";
 import { Link } from "react-router-dom";
+import Page from "../../components/layout/Page";
 
 const EmptyList = () => (
     <div className="products-empty">
@@ -23,7 +23,7 @@ function ProductsPage() {
     }, []);
 
     return (
-        <Layout title="Products">
+        <Page title="Products">
             <div className="products-container">
                 <h1>Products page</h1>
                 {products.length ? (
@@ -60,7 +60,7 @@ function ProductsPage() {
                 <EmptyList />
             )}
             </div>
-        </Layout>
+        </Page>
     );
 }
 

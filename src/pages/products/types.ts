@@ -5,6 +5,7 @@ export interface Product {
     photo: string;
     sale: boolean;
     tags: string[];
+    ownerId: string; // Añadir el campo ownerId
 }
 
 export interface productContent {

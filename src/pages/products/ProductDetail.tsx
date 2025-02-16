@@ -5,8 +5,13 @@ import { getProduct } from "./service";
 import { isApiClientError } from "../../api/client";
 import "./ProductDetail.css"; 
 import Page from "../../components/layout/Page";
+import DeleteButton from "../../components/shared/DeleteButton"; 
 
-function ProductDetail() {
+interface ProductDetailProps {
+    userId: string | null; // Información del usuario autenticado
+}
+
+function ProductDetail({ userId }: ProductDetailProps) {
     const params = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState<Product | null>(null);
@@ -34,6 +39,7 @@ function ProductDetail() {
                     <p>Sale: {product.sale ? "Yes" : "No"}</p>
                     <p>Tags: {product.tags.join(", ")}</p>
                     <img src={product.photo} alt={product.name} /> 
+                    <DeleteButton productId={product.id} ownerId={product.ownerId} userId={userId} />
                 </div>
             ) : (
                 <p>Loading...</p>

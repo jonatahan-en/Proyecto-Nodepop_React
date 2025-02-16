@@ -48,3 +48,22 @@ export default tseslint.config({
   },
 });
 ```
+
+## Estado del Proyecto
+
+### Problemas Conocidos
+
+1. **Botón de Borrar y Autorización:**
+   - El botón de borrar actualmente no funciona como se espera.
+   - Los usuarios no pueden borrar sus propios anuncios, y no hay una restricción que impida a los usuarios borrar anuncios que no les pertenecen.
+
+2. **Filtros:**
+   - Los filtros para buscar y ordenar productos aún no están implementados.
+
+### Mejoras Futuras
+
+- Arreglar la funcionalidad del botón de borrar para asegurar que los usuarios puedan borrar sus propios anuncios.
+- Implementar una autorización adecuada para evitar que los usuarios borren anuncios que no les pertenecen.
+- Añadir filtros para permitir a los usuarios buscar y ordenar productos según varios criterios.
+
+Siéntete libre de contribuir al proyecto abordando estos problemas o añadiendo nuevas funcionalidades.

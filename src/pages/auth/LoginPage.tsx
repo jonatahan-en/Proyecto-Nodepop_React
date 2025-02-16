@@ -1,59 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/shared/Button";
 import { login } from "./service";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "./context";
-import "./LoginPage.css"; // Importa el archivo CSS
+import "./LoginPage.css"; 
 import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
-//import { isApiClientError } from "../../api/client";
-
 
 function LoginPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [credentials, setCredentials] = useState({ 
+        email: "", 
+        password: "" ,
+    });
     const { onLogin } = useAuth();
     const [error, setError] = useState<{message:string} | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
 
+    useEffect(() => {
+        const rememberMe = localStorage.getItem("rememberMe") === "true";
+        const email = rememberMe ? localStorage.getItem("email") : "";
+        setRememberMe(rememberMe);
+        setCredentials((credentials) => ({
+            ...credentials,
+            email: email || "",
+        }));
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
             setIsLoading(true);
             const response = await login({
-                email,
-                password, 
+                email: credentials.email,
+                password: credentials.password 
             });
             console.log(response);
             onLogin();
 
-            const to = location.state ?.from ?? "/";
+            if (rememberMe) {
+                localStorage.setItem("rememberMe", "true");
+                localStorage.setItem("email", credentials.email);
+            } else {
+                localStorage.removeItem("rememberMe");
+                localStorage.removeItem("email");
+            }
+
+            const to = location.state?.from ?? "/";
             navigate(to, { replace: true });
         } catch (error) {
             console.log("Error", error);
-            if(error instanceof AxiosError) {
-                setError({ message: error.response?.data?.message ?? ""});
+            if (error instanceof AxiosError) {
+                setError({ message: error.response?.data?.message ?? "" });
             }
-            // if (isApiClientError(error)) {
-            //     setError (error);
-            // }
         } finally {
             setIsLoading(false);
         }
     };
 
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCredentials((credentials) => ({
+            ...credentials,
+            [event.target.name]: event.target.value, 
+        }));
     };
 
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
+    const handleRememberMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRememberMe(event.target.checked);
     };
 
-    const isDisabled = !email || !password;
+    const isDisabled = !credentials.email || !credentials.password || isLoading;
 
     return (
         <div className="login-container">
@@ -64,8 +82,8 @@ function LoginPage() {
                     <input
                         type="text"
                         name="email"
-                        value={email}
-                        onChange={handleEmailChange}
+                        value={credentials.email}
+                        onChange={handleChange}
                     />
                 </label>
                 <label>
@@ -73,9 +91,18 @@ function LoginPage() {
                     <input
                         type="password"
                         name="password"
-                        value={password}
-                        onChange={handlePasswordChange}
+                        value={credentials.password}
+                        onChange={handleChange}
                     />
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="rememberMe"
+                        checked={rememberMe}
+                        onChange={handleRememberMeChange}
+                    />
+                    Remember me
                 </label>
                 <Button
                     type="submit"
@@ -84,8 +111,8 @@ function LoginPage() {
                 >
                     {isLoading ? <ClipLoader color="white" size={20} /> : "Login"}
                 </Button>
-                {error && (<div className="error-message" onClick={() => 
-                    setError(null)}>
+                {error && (
+                    <div className="error-message" onClick={() => setError(null)}>
                         {error.message}
                     </div>
                 )}

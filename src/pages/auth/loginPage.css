@@ -21,8 +21,8 @@
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    width: 200%;
+    max-width: 500px;
 }
 
 /* Estilos para las etiquetas */
@@ -43,6 +43,12 @@
     font-size: 1rem;
 }
 
+/* Estilos para el checkbox */
+.login-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
 /* Estilos para el botón */
 .login-form button {
     width: 100%;
@@ -56,15 +62,12 @@
     transition: background-color 0.3s ease;
 }
 
-.login-form button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
 
 .login-form button:hover:not(:disabled) {
     background-color: #0056b3;
 }
 
+/* Estilos para el mensaje de error */
 .error-message {
     color: red;
     border: 1px solid red;

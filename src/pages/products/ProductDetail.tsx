@@ -3,6 +3,7 @@ import Layout from "../../components/layout/Layout";
 import { useEffect, useState } from "react";
 import { Product } from "./types";
 import { getProduct } from "./service";
+import { isApiClientError } from "../../api/client";
 import "./ProductDetail.css"; 
 
 function ProductDetail() {
@@ -14,13 +15,13 @@ function ProductDetail() {
         if (params.productId) {
             getProduct(params.productId)
                 .then((product) => setProduct(product))
-                // .catch((error) => {
-                //     if (isApiClientError(error)) {
-                //         if (error.code === "NOT_FOUND") {
-                //             navigate("/404");
-                //         }
-                //     } 
-                // });
+                .catch((error) => {
+                    if (isApiClientError(error)) {
+                        if (error.code === "NOT_FOUND") {
+                            navigate("/404");
+                        }
+                    } 
+                });
         }
     }, [params.productId, navigate]);
 

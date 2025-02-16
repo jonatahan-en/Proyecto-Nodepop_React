@@ -5,7 +5,6 @@ import type { Product  } from "./types";
 const productsUrl = "/v1/adverts";
 
 export const getLatesProducts = async () => {
-
     const response = await client.get<Product[]>(productsUrl);
     return response.data;
 }
